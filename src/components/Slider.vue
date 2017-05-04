@@ -27,9 +27,7 @@ export default {
   },
   methods: {
     getData () {
-      this.get({
-        url: '/static/data/slider.data'
-      }).then(({data}) => {
+      this.$http.get('/static/data/slider.data').then(({data}) => {
         this.sliderList.push(...data)
         setTimeout(() => {
           this.slideMove()

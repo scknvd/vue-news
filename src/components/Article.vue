@@ -5,20 +5,20 @@
         <li class="l-btn" onclick="window.history.go(-1)"></li>
       </ul>
   </div>
-  <div class="content">
+  <div class="content mt60">
     <div class="header clear">
       <h2>
-      <img :src="articleData.author_face" alt=""/>
+        <img :src="articleData.author_face" alt=""/>
       </h2>
       <p>sfs</p>
     </div>
         <div class="cont">
           <h3>{{articleData.title}}</h3>
-            <div class="time"><p>{{articleData.time | normalTime}} <span><img src="/static/img/zan.png" alt=""/></span></p></div>
+            <div class="time"><p>{{articleData.time | normalTime}} </p></div>
             <div class="text-box" v-html="articleData.content"></div>
         </div>
     </div>
-    <div class="foot-btn">
+    <div class="foot-sidebar">
       <ul>
         <li class="say">
           <a href="javascript:;">
@@ -33,7 +33,7 @@
           </a>
         </li>
         <li class="xing">
-        <a href="javascript:;">
+          <a href="javascript:;">
             <i>
               <img src="/static/img/xing.png" alt=""/>
             </i>
@@ -62,13 +62,16 @@ export default {
   },
   methods: {
     getData () {
-      this.get({
-        url: '/static/data/article.data',
-        params: 'id=1'
-      }).then(({data}) => {
-        console.log(data)
+      this.$http.get('/static/data/article.data').then(({data}) => {
+        this.articleData = data[this.$route.params.id - 1]
+        console.log(this.articleData)
+      }).catch((err) => {
+        console.log(err)
       })
     }
   }
 }
 </script>
+<style scoped>
+	@import '/static/css/mydoc.css'
+</style>

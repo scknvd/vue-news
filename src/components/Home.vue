@@ -30,8 +30,10 @@ export default {
     Banner: Slider
   },
   mounted () {
-    this.get({url: '/static/data/index.data'}).then(({data}) => {
+    this.$http.get('/static/data/index.data').then(({data}) => {
       this.dataList.push(...data)
+    }).catch((err) => {
+      console.log(err)
     })
   }
 }
@@ -39,5 +41,5 @@ export default {
 </script>
 
 <style scoped>
-
+  @import '/static/css/index.css'
 </style>

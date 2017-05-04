@@ -24,9 +24,10 @@ export default {
   },
   methods: {
     getData () {
-      this.get({url: '/static/data/follow.data'}).then(({data}) => {
-        console.log(data)
+      this.$http.get('/static/data/follow.data').then(({data}) => {
         this.dataList.push(...data)
+      }).catch((err) => {
+        console.log(err)
       })
     }
   }

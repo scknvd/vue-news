@@ -9,15 +9,7 @@ Vue.config.productionTip = false
 Object.keys(filters).forEach(key => Vue.filter(key, filters[key]))
 
 // get
-Vue.prototype.get = function (json) {
-  json = json || {}
-  let { url, params, timeout } = json
-
-  return axios.get(url, {
-    params,
-    timeout: timeout || 1000
-  })
-}
+Vue.prototype.$http = axios
 
 /* eslint-disable no-new */
 new Vue({
